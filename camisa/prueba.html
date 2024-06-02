@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: #010101;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh
+        }
+        .container{
+            width: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 15px;
+            transform: rotate(-90deg);
+        }
+        #slider{
+            width: 85%;
+            -webkit-appearance: none;
+            height: 5px;
+            position: relative;
+            background-color: rgba(249, 177, 69, 0.749);
+            outline: none;
+            border-radius: 5px;
+        }
+        #slider::-webkit-slider-thumb{
+            background-color: #ffd901;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            -webkit-appearance: none;
+        }
+        #number::before{
+            position: absolute;
+            content: '';
+            width:0px;
+            height: 0px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 10px solid #ffd901;
+            top: -9px ;
+        }
+        #number{
+            transform: rotate(90deg);
+            background-color: #ffd901;
+            width: 70px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: 600;
+            font-family: "poppins", sans-serif;
+        }
+    </style> -->
+</head>
+
+<body>
+    <button>Enviar</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $.ajax({
+            data: {nombre: "Camisa Prueba", color: "#fff"},
+            url: "../includes/actualizarDisño.php",
+            type: "POST",
+            beforeSend: () => {
+                $("#mostrar_mensaje").html("por enviar")
+            },
+            success: (mensaje) => {
+                $("#mostrar_mensaje").html(mensaje)
+                this.datatable.reload()
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

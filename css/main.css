@@ -1,0 +1,148 @@
+body{
+    background-color: #ffffff;
+    background-image: url(../imagenes/fotos/img-8.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    object-fit: cover;
+    padding: 10px 8%;
+    min-height: 94.5vh;
+}
+
+.background{
+    width: 430px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+h3{
+    color: rgb(255, 255, 255);
+}
+
+.background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    left: -80px;
+    top: -80px;
+}
+
+.shape:last-child{
+    right: -30px;
+    bottom: -80px;
+}
+
+form{
+    height: 465px;
+    width: 330px;
+    background-color: rgba(0, 0, 0, 0.77);
+    margin: 5.5% auto;
+    align-self: center;
+    align-items: center;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 40px rgba(10, 10, 10, 0.275);
+    padding: 50px 35px;
+}
+
+form{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+form h3 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input{
+    display: block;
+    height: 45px;
+    width: 94%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    border: transparent;
+    padding: 0 10px;
+    color: rgb(11, 11, 11);
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+::placeholder{
+    color: rgb(255, 255, 255);
+}
+
+button{
+    margin-top: 40px;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    background-color: rgb(175, 178, 179);
+    color: black;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.forgot-password{
+	text-decoration: none;
+	outline: none;
+	color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-in{
+	text-decoration: none;
+	outline: none;
+	color: rgb(255, 255, 255);
+	position: relative;
+	margin-top: 20px;
+    text-align: center;
+}
+
+.center-div{
+  margin-top: -35px;
+  text-align: center;
+}
+
+
+.btn-link {
+	color: black;
+	cursor: pointer;
+	display: inline-block;
+    border: transparent;
+	background-color: rgb(255, 255, 255);
+	font-size: 1em; 
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	align-self: flex-end;
+}
+
+.btn-link:hover {
+	background: grey;
+	text-decoration: none;
+}
+
