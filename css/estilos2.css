@@ -841,7 +841,7 @@ main.editor {
 /* ----- Opciones PC --------- */
 .content-opciones-pc {
     padding-top: 10px;
-    padding-right: 4%;
+    /* padding-right: 4%; */
     width: 40%;
     height: 100%;
     flex-direction: column;
@@ -850,7 +850,7 @@ main.editor {
 
 .extas-funcions {
     margin: 5px 0px;
-    ;
+    margin-bottom: 10px;
     height: 38px;
     width: 100%;
     /* background-color: red; */
@@ -861,12 +861,16 @@ main.editor {
 
 .btn-Extra-funcions {
     /* background-color: #000; */
+    
+    margin-bottom: 21px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: grey;
     border: 0px;
+    min-height: 25px;
+    min-width: 25px;
     background-color: transparent;
     cursor: pointer;
 }
@@ -875,6 +879,8 @@ main.editor {
     width: 80%;
     height: 80%;
     fill: grey;
+    min-height: 25px;
+    min-width: 25px;
 }
 
 .btn-Extra-funcions:hover,
@@ -890,7 +896,7 @@ main.editor {
 }
 
 .btn-Extra-funcions p {
-    font-size: 10px;
+    font-size: 16px;
     margin-top: 5px;
 }
 
@@ -978,10 +984,25 @@ main.editor {
 .texto-tipo-producto {
     font-size: 20px;
 }
-
+.contenedor-nombre-diseño{
+    display: block;
+}
 .texto-nombre-diseño {
+    display: inline-block;
     color: rgb(63, 63, 63);
     margin-bottom: 15px;
+}
+/* icon */
+.btn-editar-nombre:hover{
+    background-color: #ccc;
+    border-radius: 3px;
+}
+.btn-editar-nombre {
+    padding: 5px;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.2s;
 }
 
 .texto-color {
@@ -1529,7 +1550,7 @@ main.editor {
     justify-content: start;
 }
 
-.btns {
+.content-edit-position .btns {
     margin-top: 15px;
 }
 
@@ -1707,3 +1728,21 @@ body.fullscreen .extas-funcions {
 
 
 /* ------------- editor --------------*/
+
+
+.title-Disign {
+    position: absolute;
+    left: 79px;
+    top: 37px;
+    font-weight: 600;
+}
+
+#disign-content {
+    padding: 40px 0px;
+    display: block;
+    width: 100%;
+}
+
+
+
+

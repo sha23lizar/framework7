@@ -374,6 +374,10 @@ export class ModuloThree {
         link.href = imgData;
         link.click();
     }
+    getImgData() {
+        var imgData = this.renderer.domElement.toDataURL();
+        return imgData;
+    }
     
     getPreview() {
         var imgData = this.renderer.domElement.toDataURL();

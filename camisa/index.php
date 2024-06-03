@@ -130,6 +130,7 @@
 </style>
 
 <body class="">
+<div hidden id="id_user" data-id=""></div>
 
     <header>
 
@@ -151,12 +152,8 @@
                 </nav>
             </div>
             <i class="fa-solid fa-bars" id="icon_menu"></i>
-            <?php include("../includes/hederUser.php");?>
-            <div class="header__register">
-                <a href="./Sign-up/index.php" class="link"><img src="../imagenes/fotos/usuario.png" alt="" class="icon" style="display:none;"></a>
-                <input type="button" class="btn__header-register" onclick="redireccionar2()" style="font-weight: bold; color:black; border:solid 1px black; background:transparent;" value="Iniciar sesion">
-                <input type="button" class="btn__header-register" onclick="redireccionar()" style="font-weight: bold;" value="Registrarse">
-            </div>
+            <?php include("../includes/hederUser.php"); ?>
+
         </div>
 
     </header>
@@ -205,16 +202,16 @@
             </div>
             <div id="options-edit" class="options-edit">
                 <div data-toggle="head" class="header-options-edit">
-                    <button data-head="Producto" id="btn-header-opcion-producto" class="btn-header-options-edit">
+                    <button data-head="Producto" id="btn-header-opcion-producto" class="btn-header-options-edit active">
                         <span>Producto</span>
                     </button>
-                    <button data-head="Personalizaciones" id="btn-header-opcion-personalizado" class="btn-header-options-edit active">
+                    <button data-head="Personalizaciones" id="btn-header-opcion-personalizado" class="btn-header-options-edit ">
                         <span>Personalizacion</span>
                     </button>
                 </div>
 
                 <div data-toggle="content" class="content-opcions">
-                    <div data-content="Producto" class="contenedor-opciones-producto">
+                    <div data-content="Producto" class="contenedor-opciones-producto active">
                         <h3 class="texto-tipo-producto">Franela Normal</h3>
                         <?php
                         include("../includes/conexion.php");
@@ -222,21 +219,21 @@
                         $result = mysqli_query($conexionMysqli, $sql);
                         while ($mostrar = mysqli_fetch_array($result)) {
                         ?>
-                            <h4 class="texto-nombre-diseño"><?php echo $mostrar['nombre']?? 'Nuevo Diseño';?></h4>
+                            <h4 class="texto-nombre-diseño"><?php echo $mostrar['nombre'] ?? 'Nuevo Diseño'; ?></h4>
 
-                        <?php 
+                        <?php
                         } ?>
                         <h3 class="texto-color">Color de Franela:</h3>
                         <div class="content-colors"></div>
                     </div>
-                    <div data-content="Personalizaciones" class="contenedor-opciones-personalizacion active">
+                    <div data-content="Personalizaciones" class="contenedor-opciones-personalizacion">
                         <div class="content-personalizaciones active">
                         </div>
 
                     </div>
                 </div>
             </div>
-            <button class="btn-buy">
+            <button class="btn-buy" id="showFormBtn">
                 Pedir Diseño
             </button>
         </div>
@@ -267,24 +264,7 @@
                         Subir Imagen
                     </h4>
                 </button>
-                <?php
-                require("../includes/Conexion.php");
-                $id_user = 7;
-                $sql = $conexionMysqli->query("SELECT * FROM imagenes
-                    WHERE id_user = $id_user
-                    ");
-
-                while ($resultado = $sql->fetch_assoc()) {
-                ?>
-                    <div class="btns-content-user-img" id="<?php echo $resultado['id_img'] ?>" data-url="<?php echo $resultado['urlImg'] ?>" data-name="<?php echo $resultado['nameImg'] ?>">
-                        <div>
-                            <img src="<?php echo $resultado['urlImg'] ?>" alt="">
-                        </div>
-                        <p class="title"><?php echo $resultado['nameImg'] ?></p>
-                    </div>
-                <?php
-                }
-                ?>
+               
 
             </div>
         </div>
@@ -345,7 +325,61 @@
     </div>
 
 
-
+    <div class="shirt-sizes" id="shirtSizesForm">
+        <h1>Seleccione</h1>
+        <form id="orderForm" action="" method="POST">
+            <div class="shirt-size">
+                <label for="genero">Genero</label>
+                <div class="boton">
+                    <button type="button" class="btn-male" style="border-radius: 5px;"><i class='bx bx-male-sign'></i></button>
+                    <input type="hidden" id="genero" name="genero" value="">
+                    <button type="button" class="btn-female" style="border-radius: 5px;"><i class='bx bx-female-sign'></i></button>
+                </div>
+            </div>
+            <div class="shirt-size">
+                <label for="xs">XS</label>
+                <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="xs" name="xs" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+            </div>
+            <div class="shirt-size">
+                <label for="s">S</label>
+                <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="s" name="s" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+            </div>
+            <div class="shirt-size">
+                <label for="m">M</label>
+                <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="m" name="m" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+            </div>
+            <div class="shirt-size">
+                <label for="l">L</label>
+                <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="l" name="l" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+            </div>
+            <div class="shirt-size">
+                <label for="xl">XL</label>
+                <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="xl" name="xl" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+            </div>
+            <button type="submit" class="button-pev">Realizar pedido</button>
+            <div id="error-message" class="error hidden">Por favor, seleccione el género y al menos una cantidad de camisetas.</div>
+        </form>
+    </div>
 
     <footer>
         <li>©2023 ShalomCreativeDesign.Todos los derechos</li>
@@ -368,20 +402,20 @@
 
     <!-- <script src="js/script.js"></script> -->
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script type="module" src="script.js"></script>
     <!--Script Notificaciones -->
     <script type="text/javascript" src="../js/toastify.js"></script>
     <script>
         /*funcion de redireccion del input*/
-        function redireccionar () {
-            location.href="../Sign-up/login.php";
+        function redireccionar() {
+            location.href = "../Sign-up/login.php";
         }
 
-        function redireccionar2 () {
-            location.href="../Sign-up/index.php";
+        function redireccionar2() {
+            location.href = "../Sign-up/index.php";
         }
     </script>
 </body>

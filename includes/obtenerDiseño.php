@@ -5,8 +5,14 @@ include("conexion.php");
 if ($conexionMysqli->connect_error) {
     die("Error en la conexión: " . $conexionMysqli->connect_error);
 }
+if (!isset($_GET["id"])) {
+    echo json_encode(array());
+    return;
+}
+$id = $_GET["id"];
+
 // Consulta SQL para seleccionar los datos de los usuarios
-$sql = "SELECT * FROM diseños";
+$sql = "SELECT * FROM diseños WHERE id = '$id'";
 $result = $conexionMysqli->query($sql);
 
 if ($result->num_rows > 0) {
@@ -24,7 +30,7 @@ if ($result->num_rows > 0) {
     // Devolver el JSON como respuesta
     echo $json_data;
 } else {
-    echo "No se encontraron proveedores.";
+    echo json_encode(array());
 }
 
 
