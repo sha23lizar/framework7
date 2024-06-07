@@ -139,6 +139,11 @@ header("Expires: 0");
     width: 92%;
     max-width: 1374px;
   }
+  .img-tabla-pedidos{
+    width: 43px;
+    /* height: 20px; */
+    object-fit: contain;
+}
 </style>
 
 <body>
@@ -209,8 +214,8 @@ header("Expires: 0");
             <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Usuario</th>
-                  <th>Nombre Diseño</th>
+                  <th>Preview</th>
+                  <th>Nombre del Diseño</th>
                   <th>Genero</th>
                   <th>XS</th>
                   <th>S</th>
@@ -254,7 +259,19 @@ header("Expires: 0");
                 $user_email = $_SESSION['SESSION_EMAIL'];
 
                 // Fetch the orders for the logged-in user
-                $sql = "SELECT * FROM orders WHERE id_user = '$id'";
+                $sql = "SELECT 
+                o.*,
+                u.name AS user_name,
+                d.nombre AS design_name,
+                d.preview AS design_preview
+            FROM 
+                orders o
+            INNER JOIN 
+                users u ON o.id_user = u.id
+            INNER JOIN 
+                diseños d ON o.id_disign = d.id
+            WHERE 
+                o.id_user = '$id'";
                 $result = mysqli_query($conn, $sql);
 
                 if (!$result) {
@@ -266,8 +283,9 @@ header("Expires: 0");
 
                 ?>
                   <tr>
-                    <td class=""><?php echo $mostrar['id_user']; ?></td>
-                    <td class=""><?php echo $mostrar['id_disign']; ?></td>
+                    <td class=""><img class="img-tabla-pedidos" src="<?php echo $mostrar['design_preview']; ?>" alt="" srcset=""></td>
+                    <!-- <td class=""><?php echo $mostrar['design_preview']; ?></td> -->
+                    <td class=""><?php echo $mostrar['design_name']; ?></td>
                     <td class=""><?php echo $mostrar['genero']; ?></td>
                     <td class=""><?php echo $mostrar['xs']; ?></td>
                     <td class=""><?php echo $mostrar['s']; ?></td>

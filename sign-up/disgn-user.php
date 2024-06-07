@@ -47,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      echo "<script>window.location.href = 'welcome-user.php';</script>";
+      // header('Location: ' . $_SERVER['HTTP_REFERER']);
       exit();
     } else {
       $msg = "<div class='alert alert-danger'>Algo salió mal al intentar registrar su pedido.</div>";
