@@ -181,48 +181,8 @@ ol, ul {
 
 </style>
   <body>
-    <section class="sidebar">
-      <div class="nav-header">
-        <p class="logo">Perfil</p>
-        <i class=""><img class="bx bx-menu btn-menu" src="iconos/bx-menu" alt=""></i>
-      </div>
-      <ul class="nav-links">
-        <li>
-          <a href="welcome-user.php">
-            <i class=""><img src="iconos/bx-home-alt-2.svg" alt=""></i>
-            <span class="title">Inicio</span>
-          </a>
-          <span class="tooltip">Inicio</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class=''><img src="iconos/bx-brush.svg" alt=""></i>
-            <span class="title">Diseñar</span>
-          </a>
-          <span class="tooltip">Diseñar</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class=""><img src="iconos/bx-cog.svg" alt=""></i>
-            <span class="title">Configuracion</span>
-          </a>
-          <span class="tooltip">Configuracion</span>
-        </li>
-        <li>
-          <a href="./logout.php" onclick="return confirm('¿Esta seguro de cerrar la sesion?');">
-          <i class=''><img src="iconos/bx-log-out.svg" alt=""></i>
-            <span class="title">Cerrar sesion</span>
-          </a>
-        </li>
-      </ul>
-      <div class="theme-wrapper">
-        <i class="bx bxs-moon theme-icon"></i>
-        <p>Dark Theme</p>
-        <div class="theme-btn">
-          <span class="theme-ball"></span>
-        </div>
-      </div>
-    </section>
+  <?php include '../includes/component/slider.php'; ?>
+    
 
     
 <section class="home">
@@ -397,7 +357,8 @@ ol, ul {
 
       </div>
 </section>
-
+    
+<?php include '../includes/component/script-slider.php'; ?>
     
     <script>
       const btn_menu = document.querySelector(".btn-menu");

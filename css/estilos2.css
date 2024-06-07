@@ -475,7 +475,7 @@ a {
 
 /*contacto*/
 
-form {
+/* form {
     height: auto;
     background-color: black;
     position: relative;
@@ -487,7 +487,7 @@ form {
     z-index: 1;
     margin: auto;
     justify-content: center;
-}
+} */
 
 .form-2 {
     height: 479px;
@@ -506,7 +506,7 @@ form,
 .span-size {
     font-size: 18px;
 }
-
+/* 
 form {
     font-family: 'Roboto Condensed', sans-serif;
     color: white;
@@ -529,7 +529,7 @@ form h2 {
     font-weight: 400;
     text-align: center;
     margin-top: 10px;
-}
+} */
 
 label {
     display: block;
@@ -1113,6 +1113,10 @@ main.editor {
 .item-personalizacion img {
     max-height: 80%;
     margin: 0px 10px;
+    object-fit: contain;
+    /* max-height: 80%; */
+    width: 32%;
+    height: 75%;
 }
 
 .item-personalizacion .img {
@@ -1123,6 +1127,9 @@ main.editor {
 }
 
 .item-personalizacion .btn-item-personalizacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 16px;
     height: 16px;
     margin-left: 15px;
@@ -1149,6 +1156,7 @@ main.editor {
 .item-personalizacion .title {
     height: 20px;
     width: 50%;
+    padding: 0px;
     whiteSpace: nowrap;
     /* Evita que el texto se divida en varias líneas */
     overflow: hidden;
@@ -1256,6 +1264,11 @@ main.editor {
     gap: 20px 10px;
     overflow: auto scroll;
 }
+.btn-agregar-imagen h4 {
+    white-space: wrap;
+    font-weight: 600;
+    margin-top: 3px;
+}
 
 .btns-content-user-img {
     display: flex;
@@ -1280,7 +1293,7 @@ main.editor {
 
 .btns-content-user-img>div {
     width: 125px;
-    height: 125px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1289,10 +1302,13 @@ main.editor {
 }
 
 .btns-content-user-img>div>img {
-    width: 100%;
+    width: 90%;
+    object-fit: contain;
+    height: 90%;
 }
 
 .btns-content-user-img>p {
+    margin: 2px;
     height: 25px;
     width: 90%;
     padding: 0px 5%;
@@ -1743,6 +1759,21 @@ body.fullscreen .extas-funcions {
     width: 100%;
 }
 
-
+#shirtSizesForm.content-formulario-Pedidos{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 500px;
+    height: 80%;
+}
+.content-formulario-Pedidos form{
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
 
 

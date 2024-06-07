@@ -1,3 +1,9 @@
+<?php
+session_start();
+session_unset();
+session_destroy();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,10 +150,10 @@
                 <nav>
                     <ul>
                         <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="#">Productos</a></li>
                         <li><a href="#">Diseñar camiseta</a></li>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#" style="color: transparent;">Productos</a></li>
+                        <li><a href="#" style="color: transparent;">Nosotros</a></li>
+                        <li><a href="#" style="color: transparent;">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -322,63 +328,6 @@
             </div>
 
         </div>
-    </div>
-
-
-    <div class="shirt-sizes" id="shirtSizesForm">
-        <h1>Seleccione</h1>
-        <form id="orderForm" action="" method="POST">
-            <div class="shirt-size">
-                <label for="genero">Genero</label>
-                <div class="boton">
-                    <button type="button" class="btn-male" style="border-radius: 5px;"><i class='bx bx-male-sign'></i></button>
-                    <input type="hidden" id="genero" name="genero" value="">
-                    <button type="button" class="btn-female" style="border-radius: 5px;"><i class='bx bx-female-sign'></i></button>
-                </div>
-            </div>
-            <div class="shirt-size">
-                <label for="xs">XS</label>
-                <div class="boton">
-                    <button type="button" class="btn-minus">-</button>
-                    <input type="number" id="xs" name="xs" value="0" min="0">
-                    <button type="button" class="btn-plus">+</button>
-                </div>
-            </div>
-            <div class="shirt-size">
-                <label for="s">S</label>
-                <div class="boton">
-                    <button type="button" class="btn-minus">-</button>
-                    <input type="number" id="s" name="s" value="0" min="0">
-                    <button type="button" class="btn-plus">+</button>
-                </div>
-            </div>
-            <div class="shirt-size">
-                <label for="m">M</label>
-                <div class="boton">
-                    <button type="button" class="btn-minus">-</button>
-                    <input type="number" id="m" name="m" value="0" min="0">
-                    <button type="button" class="btn-plus">+</button>
-                </div>
-            </div>
-            <div class="shirt-size">
-                <label for="l">L</label>
-                <div class="boton">
-                    <button type="button" class="btn-minus">-</button>
-                    <input type="number" id="l" name="l" value="0" min="0">
-                    <button type="button" class="btn-plus">+</button>
-                </div>
-            </div>
-            <div class="shirt-size">
-                <label for="xl">XL</label>
-                <div class="boton">
-                    <button type="button" class="btn-minus">-</button>
-                    <input type="number" id="xl" name="xl" value="0" min="0">
-                    <button type="button" class="btn-plus">+</button>
-                </div>
-            </div>
-            <button type="submit" class="button-pev">Realizar pedido</button>
-            <div id="error-message" class="error hidden">Por favor, seleccione el género y al menos una cantidad de camisetas.</div>
-        </form>
     </div>
 
     <footer>

@@ -1,55 +1,19 @@
 <?php
 
+
 session_start();
-/*
-// Verificar si la sesión no está activa
+
 if (!isset($_SESSION['SESSION_EMAIL'])) {
-    // Redireccionar al usuario a la página de inicio de sesión
-    header("Location: index.php");
-    exit(); // Detener la ejecución del script
+  header("Location: index.php");
+  exit();
 }
 
-// Verificar el rol del usuario
 if ($_SESSION['ROLE'] == 'administrador') {
-    // Redireccionar al usuario a la página principal si intenta acceder al panel de usuario
-    header("Location: index.php");
-    exit(); // Detener la ejecución del script
-}
-*/
-
-// Verificar si la sesión no está activa
-if (!isset($_SESSION['SESSION_EMAIL'])) {
-  // Redireccionar al usuario a la página de inicio de sesión
   header("Location: index.php");
-  exit(); // Detener la ejecución del script
+  exit();
 }
-
-// Verificar el rol del usuario
-if ($_SESSION['ROLE'] != 'usuario') {
-  // Redireccionar al usuario a la página principal si no es administrador
-  header("Location: index.php");
-  exit(); // Detener la ejecución del script
-}
-
-
 
 include 'config.php';
-
-if (isset($_POST['upload_image'])) {
-  $name = $_SESSION['SESSION_EMAIL'];
-  $image = $_FILES['profile_image']['tmp_name'];
-  $image_data = file_get_contents($image);
-
-  $update_query = "UPDATE users SET profile_image = ? WHERE email = ?";
-  $stmt = $conn->prepare($update_query);
-  $stmt->bind_param("bs", $image_data, $name);
-
-  if ($stmt->execute()) {
-    echo "Imagen de perfil guardada correctamente.";
-  } else {
-    echo "Error al guardar la imagen de perfil.";
-  }
-}
 
 $query = mysqli_query($conn, "SELECT * FROM users WHERE email='{$_SESSION['SESSION_EMAIL']}'");
 $id;
@@ -60,13 +24,40 @@ if (mysqli_num_rows($query) > 0) {
   $id = $row['id'];
 }
 
-
 $sql = "SELECT id, name, email, pregunta_seguridad, respuesta_seguridad FROM users"; // Consulta SQL
 $result = $conn->query($sql); // Ejecutar consulta
 
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $genero = mysqli_real_escape_string($conn, $_POST['genero']);
+  $xs = mysqli_real_escape_string($conn, $_POST['xs']);
+  $s = mysqli_real_escape_string($conn, $_POST['s']);
+  $m = mysqli_real_escape_string($conn, $_POST['m']);
+  $l = mysqli_real_escape_string($conn, $_POST['l']);
+  $xl = mysqli_real_escape_string($conn, $_POST['xl']);
+  $id_user = mysqli_real_escape_string($conn, $_POST['id_user']);
+  $id_disign = mysqli_real_escape_string($conn, $_POST['id_disign']);
+
+  // Asegurarse de que las variables $name y $email están definidas antes de usarlas
+  if ($name && $email) {
+    $sql = "INSERT INTO orders (id_disign, id_user, genero, xs, s, m, l, xl) VALUES ('{$id_disign}', '{$id_user}', '{$genero}', '{$xs}', '{$s}', '{$m}', '{$l}', '{$xl}')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      exit();
+    } else {
+      $msg = "<div class='alert alert-danger'>Algo salió mal al intentar registrar su pedido.</div>";
+    }
+  } else {
+    $msg = "<div class='alert alert-danger'>Error: Datos del usuario no encontrados.</div>";
+  }
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  exit();
+}
 
 ?>
 
@@ -85,6 +76,8 @@ header("Expires: 0");
   <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
   <link rel="stylesheet" href="./css/profile.css">
   <link rel="stylesheet" href="../css/estilos2.css">
+  <link rel="stylesheet" type="text/css" href="../css/toastify.css">
+
 
   <link href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/icon/font/bootstrap-icons.min.css" />
@@ -141,6 +134,173 @@ header("Expires: 0");
     width: 92%;
     max-width: 1374px;
   }
+
+
+
+
+  body.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.5s ease;
+    font-family: sans-serif;
+  }
+
+  .shirt-sizes {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 500px;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+  }
+
+  .visible {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .shirt-size,
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  label {
+    margin-right: 10px;
+    padding-left: 12px;
+  }
+
+  .shirt-size .boton {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    left: -10px;
+
+  }
+
+
+  .bx-male-sign {
+    color: blue;
+  }
+
+  .bx-female-sign {
+    color: pink;
+  }
+
+
+  input {
+    width: 60px;
+    height: 42px;
+    border: solid 2px;
+    text-align: center;
+    border-left: transparent;
+    border-right: transparent;
+    display: flex;
+    padding-left: 15px;
+  }
+
+  h1,
+  .shirt-size:not(:last-child) {
+    /*border-bottom: 2px solid gray;*/
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+
+
+  .btn-minus,
+  .btn-plus {
+    width: 43px;
+    height: 42px;
+    font-size: 16px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+
+  .btn-female,
+  .btn-male {
+    width: 43px;
+    height: 42px;
+    font-size: 16px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+
+  .btn-minus:hover,
+  .btn-plus:hover {
+    background-color: #ccc;
+  }
+
+  .btn-minus {
+    border-radius: 5px 0px 0px 5px;
+    border: solid 2px;
+  }
+
+  .btn-plus {
+    border-radius: 0px 5px 5px 0px;
+    border: solid 2px;
+  }
+
+  .boton-sep {
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    padding: auto;
+    justify-content: center;
+    width: 100%;
+  }
+  #orderForm{
+    justify-items: center;
+
+  }
+  .button-pev {
+    padding: 10px;
+    background-color: rgb(60, 251, 57);
+    color: white;
+    border: transparent;
+    font-weight: bold;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: -16.5px;
+
+  }
+
+
+  .hidden {
+    display: none;
+  }
+
+  .error {
+    color: red;
+    padding: 20px;
+    padding-top: 0px;
+  }
+
+  .selected {
+    background-color: lightgray;
+  }
 </style>
 
 <body>
@@ -148,48 +308,7 @@ header("Expires: 0");
   <div hidden id="id_user" data-id="<?php echo $id; ?>"></div>
 
 
-  <section class="sidebar">
-    <div class="nav-header">
-      <p class="logo">Perfil</p>
-      <i class=""><img class="bx bx-menu btn-menu" src="iconos/bx-menu" alt=""></i>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="welcome-user.php">
-          <i class=""><img src="iconos/bx-home-alt-2.svg" alt=""></i>
-          <span class="title">Inicio</span>
-        </a>
-        <span class="tooltip">Inicio</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class=''><img src="iconos/bx-brush.svg" alt=""></i>
-          <span class="title">Diseñar</span>
-        </a>
-        <span class="tooltip">Diseñar</span>
-      </li>
-      <li>
-        <a href="configuracion-user.php">
-          <i class=""><img src="iconos/bx-cog.svg" alt=""></i>
-          <span class="title">Configuracion</span>
-        </a>
-        <span class="tooltip">Configuracion</span>
-      </li>
-      <li>
-        <a href="./logout.php" onclick="return confirm('¿Esta seguro de cerrar la sesion?');">
-          <i class=''><img src="iconos/bx-log-out.svg" alt=""></i>
-          <span class="title">Cerrar sesion</span>
-        </a>
-      </li>
-    </ul>
-    <div class="theme-wrapper">
-      <i class="bx bxs-moon theme-icon"></i>
-      <p>Dark Theme</p>
-      <div class="theme-btn">
-        <span class="theme-ball"></span>
-      </div>
-    </div>
-  </section>
+  <?php include '../includes/component/slider.php'; ?>
 
 
 
@@ -267,8 +386,8 @@ header("Expires: 0");
                         <?php
                         include("../includes/conexion.php");
                         if (isset($_GET['id'])) {
-                          $id = $_GET['id'];
-                          $sql = "SELECT nombre FROM diseños  WHERE id= '$id'";
+                          $id_disign = $_GET['id'];
+                          $sql = "SELECT nombre FROM diseños  WHERE id= '$id_disign'";
                           $result = mysqli_query($conexionMysqli, $sql);
                           while ($mostrar = mysqli_fetch_array($result)) {
                         ?>
@@ -307,6 +426,76 @@ header("Expires: 0");
 
 
 
+            <div id="overlay"></div>
+
+            <div class="shirt-sizes" id="shirtSizesForm" class="content-formulario-Pedidos">
+              <h1>Seleccione</h1>
+              <form id="orderForm" action="" method="POST" enctype="multipart/form-data">
+                <div class="shirt-size">
+                  <label for="genero">Genero</label>
+                  <div class="boton">
+                    <button type="button" class="btn-male" style="border-radius: 5px;">M</button>
+                    <input type="hidden" id="genero" name="genero" value="">
+                    <button type="button" class="btn-female" style="border-radius: 5px;">F</button>
+                  </div>
+                </div>
+                <div class="shirt-size">
+                  <label for="xs">XS</label>
+                  <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="xs" name="xs" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                  </div>
+                </div>
+                <div class="shirt-size">
+                  <label for="s">S</label>
+                  <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="s" name="s" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                  </div>
+                </div>
+                <div class="shirt-size">
+                  <label for="m">M</label>
+                  <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="m" name="m" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                  </div>
+                </div>
+                <div class="shirt-size">
+                  <label for="l">L</label>
+                  <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="l" name="l" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                  </div>
+                </div>
+                <div class="shirt-size">
+                  <label for="xl">XL</label>
+                  <div class="boton">
+                    <button type="button" class="btn-minus">-</button>
+                    <input type="number" id="xl" name="xl" value="0" min="0">
+                    <button type="button" class="btn-plus">+</button>
+                  </div>
+                </div>
+                <!-- 
+                  <div class="shirt-size">
+                    <label for="image_path">Imagen para el pedido</label>
+                    
+                    <input type="file" id="image_path" name="image_path" style="border-bottom: transparent; border-top: transparent; width: 400px;" accept="image/*" required>
+                    
+                  </div> -->
+                  
+                  <div id="error-message" class="error hidden">Por favor, seleccione el género y al menos una cantidad de camisetas.</div>
+                  <button type="submit" class="button-pev">Realizar pedido</button>
+                  <input type="text" class="input_id_user" name="id_user" value="<?php echo $id; ?>" hidden>
+                  <input type="text" id="input_id_disign"  name="id_disign" value="<?php echo isset($_GET['id']) ? $_GET['id'] : 'none';?>" hidden>
+                </form>
+            </div>
+
+
+
             <div class="conteiner-agregar-personalizaciones">
               <button class="btn-cerrar-modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="white" class="bi bi-x" viewBox="0 0 16 16">
@@ -318,7 +507,7 @@ header("Expires: 0");
                 <div class="opciones-agregar">
                   <form method="POST" action="../includes/subirImagen.php" class="form-agregar-imagen" style="display: none;">
                     <input type="file" name="imgens" id="file-agregar-file" hidden>
-                    <input type="text" name="id_user" value="7" hidden>
+                    <input type="text" name="id_user" value="<?php echo $id; ?>" hidden>
                     <input class="btn-submit" type="submit" value="" hidden>
                   </form>
                   <button class="btn-agregar-imagen">
@@ -330,6 +519,12 @@ header("Expires: 0");
                       Subir Imagen
                     </h4>
                   </button>
+                  <div class="btns-content-user-img" id="10" data-url="../users/7/img/1038698563.jpg" data-name="TU NOMBRE (1920 x 522 px).png">
+                      <div>
+                        <img src="..\assets\img\name.jpg" alt="">
+                      </div>
+                      <p class="title">TU NOMBRE</p>
+                    </div>
                   <?php
                   require("../includes/Conexion.php");
                   // $id_user = 7;
@@ -414,6 +609,7 @@ header("Expires: 0");
 
   </section>
 
+  <?php include '../includes/component/script-slider.php'; ?>
 
 
 
@@ -505,13 +701,13 @@ header("Expires: 0");
             }
         }
     </script>
-  <script src="../js/sweetalert.min.js"></script>
+  <!-- <script src="../js/sweetalert.min.js"></script> -->
   <script src="../js/jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script type="module" src="..\js\formularioPedido.js"></script>
+  <script type="text/javascript" src="../js/toastify.js"></script>
   <script type="module" src="..\camisa\script.js"></script>
   <!--Script Notificaciones -->
-  <script type="text/javascript" src="../js/toastify.js"></script>
 </body>
 
 </html>

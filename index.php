@@ -1,3 +1,12 @@
+<?php
+
+
+session_start();
+session_unset();
+session_destroy();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,6 +106,50 @@ margin-bottom: 60px;
 }
 
 
+form {
+    
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+    
+}
+
+form {
+    
+    height: auto;
+    background-color: black;
+    position: relative;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    z-index: 1;
+    margin: auto;
+    justify-content: center;
+
+}
+
+
+form h3 {
+    
+    margin-left: 10em;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 5px;
+    text-align: center;
+    
+}
+
+form h2 {
+    
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 10px;
+}
+
 
 @media(max-width:1385px) {
   .section-about {
@@ -142,9 +195,9 @@ margin-bottom: 60px;
                     <ul>
                         <li><a href="#">Inicio</a></li>
                         <li><a href=".\camisa\index.php">Diseñar camiseta</a></li>
-                        <li><a href="#">Productos</a></li>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="#Contacto">Contacto</a></li>
+                        <li><a href="#" style="color: transparent;">Productos</a></li>
+                        <li><a href="#" style="color: transparent;">Nosotros</a></li>
+                        <li><a href="#Contacto" style="color: transparent;">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -165,8 +218,7 @@ margin-bottom: 60px;
             <div class="text__information-cover">
                 <p class="h1">Bienvenido a Shalom Creative Design</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <p>Transformando la ropa personalizada en una experiencia inolvidable. No sólo creamos ropa, sino que también creamos experiencias. Cada prenda que diseñas es única, personalizada para adaptarse a tu estilo y gusto individual.</p>
 
                 <div class="buttons__cover" style="display: none;">
                     <input type="button" class="btn__readMore-cover" style="font-weight: bold;" value="Leer más">
@@ -193,7 +245,7 @@ margin-bottom: 60px;
                 </div>
                 <div class="banner__text">
                     <h2>En Shalom Creative Design te ofrecemos la oportunidad de poder diseñar tu propia camiseta de manera gratuita</h2>
-                    <a href="#">Leer más</a>
+                    <!-- <a href="#">Leer más</a> -->
                 </div>
             </div>
 
@@ -211,12 +263,12 @@ margin-bottom: 60px;
                             chevron_left
                           </button>
                           <ul class="image-list">
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camiseta de mujer.webp" alt="img-1" />
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camiseta-manga-larga.png" alt="img-2" />
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camiseta de nirvana.png" alt="img-3" />
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camiseta-mtv.webp" alt="img-4" />
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camiseta pac man.webp" alt="img-5" />
-                            <img class="image-item" src="./imagenes/fotos/camisetas/camseta-1.jpg" alt="img-6" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 1.png" alt="img-1" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 2.png" alt="img-2" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 3.png" alt="img-3" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 4.png" alt="img-4" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 5.png" alt="img-5" />
+                            <img class="image-item" src="./imagenes/fotos/camisetas/camisa 6.png" alt="img-6" />
                           </ul>
                           <button id="next-slide" class="slide-button material-symbols-rounded">
                             chevron_right
@@ -239,25 +291,21 @@ margin-bottom: 60px;
 
     <div class="text">
         <h4>Acerca de nosotros</h4>
-        <h1>We Guarantee You Business <br> Succes - Love to Help you</h1>
-        <hr>
+        <h1 style="margin-bottom: 10px;">Somos Shalom Creative Design. Una empresa creada para ti</h1>
+        <hr style="margin-bottom: 10px;">
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-            deserunt mollit anim id est laborum. 
+        En Shalom Creative Design, creemos en la innovación, la calidad y el estilo. Fabricamos ropa con materiales de primera calidad y técnicas innovadoras para garantizar la satisfacción de nuestros clientes. Nuestro servicio de atención al cliente eficiente facilita el proceso de compra y entrega, asegurando una experiencia de compra agradable. Nuestra visión es liderar el mercado de la moda personalizada, ofreciendo prendas de vestir de alta calidad y diseño exclusivo que se adapten a las preferencias de cada cliente. 
         </p>
     </div>
 </section>
 
-              <!-- <section class="seccion-2" id="Contacto">
+               <section class="seccion-2" id="Contacto" style="margin-top: 50px;">
                 <div class="area">
                 <div class="contenedor">
                     <div class="contacto">
-                        <p class="titulo-2">Contacto</p>
+                        <p class="titulo-2">Contactanos</p>
                         <p class="campo-de-texto-2">
-                            Lorem ipsum, dolor sit amet coknsectetur adipisicing elit Cupiditate, autem animiipsum dolor sit amet coknsectetur adipisicing elit Cupiditate, autem animi ipsum, dolor amet coknsectetur adipisicing.
+                        En Shalom Creative Design, valoramos la comunicación abierta y directa con nuestros clientes. Si tienes alguna pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte.
                         </p>
                     </div>
                     <br><br>
@@ -267,28 +315,29 @@ margin-bottom: 60px;
                         <form action="enviar.php" method="POST">
                             <div class="contenido-contacto">
                                 
+                                <h4 >Telefono:</h4>
+                                <p>+58 426 791 4328</p>
                                 <br>
-                                <label for="username">Full name</label>
-                                <input type="text" class="input-contacto" placeholder="Name" id="name" name="name" required>
-                        
-                                <label for="username">Email</label>
-                                <input type="email" class="input-contacto" placeholder="Email or phone" id="email" name="email" required >
-                        
-                                <label for="pasword">Message</label>
-                                <textarea name="message" id="message" class="input" required></textarea>
-                                <input type="submit" class="boton-mensaje">
+                                <h4 >Gmail:</h4>
+                                <p>shalom_creative_design@gmail.com</p>
+                                <br>
+                                <h4 >Dirección:</h4>
+                                <p>Avenida perimetral, sector fortaleza, calle 7, Ciudad
+Bolivar, Estado Bolivar, Venezuela</p>
+                                <br>
+                                <br>
             
                                 <div class="footer-content">
                                     <div class="icon-social">
-                                        <a href="https://tr.ee/fk1eKXsTTY"><img src="https://png.pngtree.com/element_our/md/20180509/md_5af2d4c95ac7b.jpg" class="boton-social" alt=""></a>
-                                        <a href="https://www.instagram.com/fabrimine.ca/"><img src="https://w7.pngwing.com/pngs/519/326/png-transparent-black-and-white-dark-grey-instagram-transparent-on-dark-grey-icon.png" class="boton-social" alt=""></a>
+                                        <a href="https://wa.link/g09fl3"><img src="https://png.pngtree.com/element_our/md/20180509/md_5af2d4c95ac7b.jpg" class="boton-social" alt=""></a>
+                                        <a href="https://www.instagram.com/shalom.creative.disign/"><img src="https://w7.pngwing.com/pngs/519/326/png-transparent-black-and-white-dark-grey-instagram-transparent-on-dark-grey-icon.png" class="boton-social" alt=""></a>
                                     </div>
                                 </div>
                             </div>
                         </form>          
                     </div>
                 </div>  
-            </section> -->
+            </section> 
         </main>
 
     <footer>

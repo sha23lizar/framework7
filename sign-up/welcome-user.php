@@ -146,48 +146,8 @@ header("Expires: 0");
   <div hidden id="id_user" data-id="<?php echo $id; ?>"></div>
 
 
-  <section class="sidebar">
-    <div class="nav-header">
-      <p class="logo">Perfil</p>
-      <i class=""><img class="bx bx-menu btn-menu" src="iconos/bx-menu" alt=""></i>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="welcome-user.php">
-          <i class=""><img src="iconos/bx-home-alt-2.svg" alt=""></i>
-          <span class="title">Inicio</span>
-        </a>
-        <span class="tooltip">Inicio</span>
-      </li>
-      <li>
-        <a href="disgn-user.php">
-          <i class=''><img src="iconos/bx-brush.svg" alt=""></i>
-          <span class="title">Diseñar</span>
-        </a>
-        <span class="tooltip">Diseñar</span>
-      </li>
-      <li>
-        <a href="configuracion-user.php">
-          <i class=""><img src="iconos/bx-cog.svg" alt=""></i>
-          <span class="title">Configuracion</span>
-        </a>
-        <span class="tooltip">Configuracion</span>
-      </li>
-      <li>
-        <a href="./logout.php" onclick="return confirm('¿Esta seguro de cerrar la sesion?');">
-          <i class=''><img src="iconos/bx-log-out.svg" alt=""></i>
-          <span class="title">Cerrar sesion</span>
-        </a>
-      </li>
-    </ul>
-    <div class="theme-wrapper">
-      <i class="bx bxs-moon theme-icon"></i>
-      <p>Dark Theme</p>
-      <div class="theme-btn">
-        <span class="theme-ball"></span>
-      </div>
-    </div>
-  </section>
+  <?php include '../includes/component/slider.php'; ?>
+
 
 
 
@@ -249,8 +209,8 @@ header("Expires: 0");
             <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Email</th>
+                  <th>Usuario</th>
+                  <th>Nombre Diseño</th>
                   <th>Genero</th>
                   <th>XS</th>
                   <th>S</th>
@@ -294,7 +254,7 @@ header("Expires: 0");
                 $user_email = $_SESSION['SESSION_EMAIL'];
 
                 // Fetch the orders for the logged-in user
-                $sql = "SELECT * FROM orders WHERE email = '$user_email'";
+                $sql = "SELECT * FROM orders WHERE id_user = '$id'";
                 $result = mysqli_query($conn, $sql);
 
                 if (!$result) {
@@ -306,8 +266,8 @@ header("Expires: 0");
 
                 ?>
                   <tr>
-                    <td class=""><?php echo $mostrar['name']; ?></td>
-                    <td class=""><?php echo $mostrar['email']; ?></td>
+                    <td class=""><?php echo $mostrar['id_user']; ?></td>
+                    <td class=""><?php echo $mostrar['id_disign']; ?></td>
                     <td class=""><?php echo $mostrar['genero']; ?></td>
                     <td class=""><?php echo $mostrar['xs']; ?></td>
                     <td class=""><?php echo $mostrar['s']; ?></td>
@@ -344,56 +304,9 @@ header("Expires: 0");
     </div>
 
 
-    <div class="container">
-      <h1>Diseños</h1>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-          <a href="disgn-user.php" class="stretched-link text-secondary">
-              <div class="card-body d-flex  align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="23%" height="23%" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                </svg>
-                <h4 class="ml-5">Agregar</h4>
-              </div>
-            </a>
-            </div>
-        </div>
-        <?php
-        require("../includes/conexion.php");
-
-        $sql = $conexionMysqli->query("SELECT * FROM diseños WHERE user_id = '$id'");
-
-        while ($resultado = $sql->fetch_assoc()) {
-        ?>
-          <!-- <th scope="row"><?php echo $resultado['IdProducto'] ?></th> -->
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src="<?php echo $resultado['preview']; ?>" alt="" srcset="">
-
-              <div class="card-body">
-                <h2><?php echo $resultado['nombre']; ?></h2>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href="disgn-user.php?id=<?php echo $resultado['id']; ?>" class="btn btn-sm btn btn-outline-secondary">editar</a>
-                  </div>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-link="../includes/eliminarDiseño.php?id=<?php echo $resultado['id']; ?>" onclick="confirmDelete(this);">eliminar</button>
-                  </div>
-                  <!-- <small class="text-muted"><?php echo $id; ?></small> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <?php
-        }
-        ?>
-      </div>
-    </div>
   </section>
-  <script src="../js/sweetalert.min.js"></script>
+  <?php include '../includes/component/script-slider.php'; ?>
+
 
   <script>
     //***** */

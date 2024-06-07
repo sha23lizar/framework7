@@ -16,7 +16,12 @@ $sql = "INSERT INTO diseños(nombre, color, preview, personalizaciones, user_id)
 // Consulta SQL para seleccionar los datos de los usuarios
 $result = $conexionMysqli->query($sql);
 
-echo $result;
+// Obtener el ID del registro recién insertado
+$new_id = $conexionMysqli->insert_id;
+
+// Redirigir a la misma página con el ID como parámetro
+echo $new_id;
 
 // Cerrar la conexión
 $conexionMysqli->close();
+?>

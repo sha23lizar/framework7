@@ -109,7 +109,7 @@ ol, ul {
   <section class="sidebar">
       <div class="nav-header">
         <p class="logo">Administrador</p>
-        <i class="bx bx-menu btn-menu"></i>
+        <i class=""><img class="bx bx-menu btn-menu" src="../iconos/bx-menu.svg" alt=""></i>
       </div>
       <ul class="nav-links">
         <li>

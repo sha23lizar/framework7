@@ -1,17 +1,21 @@
-document.getElementById('showFormBtn').addEventListener('click', function() {
-   document.getElementById('overlay').style.display = 'block';
-   document.getElementById('shirtSizesForm').classList.add('visible');
-   document.body.classList.add('dark-overlay');
-});
-
-document.getElementById('overlay').addEventListener('click', function() {
-   document.getElementById('overlay').style.display = 'none';
-   document.getElementById('shirtSizesForm').classList.remove('visible');
-   document.body.classList.remove('dark-overlay');
-});
+import { Loader } from '../js/loader.js';
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const loader = new Loader();
+    loader.hide();
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+        document.querySelector(".btn-save").click()
+       document.getElementById('overlay').style.display = 'block';
+       document.getElementById('shirtSizesForm').classList.add('visible');
+       document.body.classList.add('dark-overlay');
+    });
+    
+    document.getElementById('overlay').addEventListener('click', function() {
+       document.getElementById('overlay').style.display = 'none';
+       document.getElementById('shirtSizesForm').classList.remove('visible');
+       document.body.classList.remove('dark-overlay');
+    });
    const form = document.getElementById('orderForm');
    const generoInput = document.getElementById('genero');
    const xsInput = document.getElementById('xs');
@@ -19,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
    const mInput = document.getElementById('m');
    const lInput = document.getElementById('l');
    const xlInput = document.getElementById('xl');
+   const input_id_disign = document.getElementById('input_id_disign');
    const errorMessage = document.getElementById('error-message');
 
    const maleButton = document.querySelector('.btn-male');
@@ -47,6 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
            event.preventDefault();
            errorMessage.classList.remove('hidden');
        }
+       if (input_id_disign.value === 'none') {
+           event.preventDefault();
+           swal("Primeros debes guardar el Diseño", {
+            buttons: ["cerrar", "Guardar"],
+          }).then((value) => {
+            document.getElementById('overlay').click();
+            if (value === true) {
+                document.querySelector(".btn-save").click()
+
+            }
+          });        
+       }
+       
    });
 
    const buttonsMinus = document.querySelectorAll('.btn-minus');

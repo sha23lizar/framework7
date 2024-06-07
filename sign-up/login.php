@@ -111,6 +111,7 @@ if (isset($_POST['submit'])) {
     <!--/Style-CSS -->
     <link rel="stylesheet" href="css/style.css"/>
     <!--//Style-CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/toastify.css">
 
     <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
 
@@ -153,7 +154,7 @@ if (isset($_POST['submit'])) {
                     
                     <div class="w3l_form align-self">
                         <div class="left_grid_info" >
-                            <img src="./images/Neutral Minimalist Social Media Digital Product Carousel Instagram Post.png" alt="">
+                            <img src="./images/login.png" alt="">
                             <?php echo $msg; ?>
                         </div>
                     </div>
@@ -184,6 +185,8 @@ if (isset($_POST['submit'])) {
         </div>
     </section>
 
+<script type="text/javascript" src="../js/toastify.js"></script>
+
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -202,6 +205,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostrar los campos después de enviar el formulario principal
         const submitButton = document.querySelector('[name="submit"]');
         submitButton.addEventListener('click', function() {
+            if (password.value !== confirmPassword.value) {
+                Toastify({
+                        text: "La contraseñas no coinciden.",
+                        duration: 4000,
+                        close: 3 % 3 ? true : false,
+                        style: {
+                            background: "linear-gradient(to right, #ff5f6d, #ff9800)",
+                        }
+                    }).showToast();
+                return;
+            }
             name.style.display = 'none';
             email.style.display = 'none';
             password.style.display = 'none';
