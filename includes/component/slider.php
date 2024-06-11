@@ -39,11 +39,12 @@
       </a>
     </li>
   </ul>
-  <div class="theme-wrapper" hidden>
-        <i class="bx bxs-moon theme-icon"></i>
-        <p>Dark Theme</p>
-        <div class="theme-btn">
-          <span class="theme-ball"></span>
+  <div class="theme-wrapper mb-3" >
+    <img src="./images/logo-small.png" alt="">
+        <i class="bx bxs-moon theme-icon " hidden ></i>
+        <p hidden>Dark Theme</p>
+        <div class="theme-btn" hidden>
+          <span class="theme-ball"hidden ></span>
         </div>
       </div>
 

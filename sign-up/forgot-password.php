@@ -100,19 +100,22 @@ if (isset($_POST['submit'])) {
                 <div class="main-mockup">
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
+                        <a href="../index.php">
+                                <img src="./images/logo.png" style="width: 150px; position: absolute; top: 60px; left: 40px;" alt="">
+                            </a>
                             <img src="images/image3.svg" alt="">
                             <?php echo $msg; ?>
                         </div>
                     </div>
                     <div class="content-wthree">
                         <h2>Olvidaste tu contraseña?</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <p>Ingresa tus datos para recuperarla. </p>
                         <form action="" method="post">
                             <input type="email" class="email" name="email" placeholder="Introduce tu correo electrónico" required>
                             <button name="submit" class="btn" type="submit">Enviar enlace de reinicio</button>
                         </form>
                         <div class="social-icons">
-                            <p>Regresar a <a href="index.php" >Login</a>.</p>
+                            <p>Regresar al <a href="index.php" >inicio de sesion</a>.</p>
                             <br>
                             <p>Cambiar contraseña sin conexión <a href="cambiar-contraseña.php">aqui</a>.</p>
                         </div>

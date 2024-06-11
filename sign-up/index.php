@@ -243,8 +243,11 @@ body {
             <!-- /form -->
             <div class="workinghny-form-grid">
                 <div class="main-mockup">
-                    <div class="w3l_form align-self">
+                    <div class="w3l_form align-self" >
                         <div class="left_grid_info">
+                        <a href="../index.php">
+                                <img src="./images/logo.png" style="width: 150px; position: absolute; top: 60px; left: 40px;" alt="">
+                            </a>
                             <img src="images/image.svg" alt="">
                             <?php echo $msg; ?>
                         </div>
@@ -253,7 +256,7 @@ body {
                         <br>
                         <br>
                         <h2>Iniciar Sesion</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <p>Ingresa tus datos.</p>
                         <form action="" method="post"> 
                     <div class="input-google" value="Continue with Google" id="custom-google-button" data-onsuccess="onSignIn" style="display: none;">
                         <img src="../imagenes/fotos/google Log In (1).png" alt="Google Logo" value="Continue with Google" id="custom-google-button" class="g-signin2" data-onsuccess="onSignIn">
@@ -261,11 +264,11 @@ body {
                             <input type="email" class="email" name="email" placeholder="Ingresa tu correo" required>
                             <input type="password" class="password" name="password" placeholder="Ingresa tu contraseña" required>
                             <p style="text-align: end;"><a href="forgot-password.php">Olvidaste tu contraseña?</a></p><br>
-                            <button name="submit" name="submit" class="btn" type="submit">Login</button>
+                            <button name="submit" name="submit" class="btn" type="submit">Iniciar Sesion</button>
                         </form>
                         <div class="social-icons">
                             <p>Create una cuenta! <a href="login.php">Registrarse</a>.</p>
-                            <p><a href="../index.php">Return</a></p>
+                            <p><a href="../index.php">Volver</a></p>
                             <br>
                         </div>
                     </div>

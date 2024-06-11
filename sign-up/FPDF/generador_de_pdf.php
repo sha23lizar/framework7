@@ -38,7 +38,7 @@ class PDF extends FPDF
         
 
         $this->SetFont('Arial', 'B', 8);
-        $this->Cell(40, 10, 'Nombre', 1, 0);
+        $this->Cell(40, 10, 'Nombre de usuario', 1, 0);
         $this->Cell(50, 10, 'Email', 1, 0);
         $this->Cell(15, 10, 'Genero', 1, 0, 'C');
         $this->Cell(10, 10, 'XS', 1, 0, 'C');
@@ -57,7 +57,7 @@ class PDF extends FPDF
     {
         $this->SetY(-15);
         $this->SetFont('Arial', 'I', 8);
-        $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
+        $this->Cell(0, 10, utf8_decode('©2023 ShalomCreativeDesign.Todos los derechos'), 0, 0, 'C');
     }
 }
 
@@ -74,7 +74,21 @@ if (!$email) {
     die("Email de usuario no definido.");
 }
 
-$sql = "SELECT * FROM orders WHERE id = '$order_id' AND email = '$email'";
+// $sql = "SELECT * FROM orders WHERE id = '$order_id' AND email = '$email'";
+$sql = "SELECT 
+                o.*,
+                u.name AS user_name,
+                u.email,
+                d.nombre AS design_name,
+                d.preview AS design_preview
+            FROM 
+                orders o
+            INNER JOIN 
+                users u ON o.id_user = u.id
+            INNER JOIN 
+                diseños d ON o.id_disign = d.id
+            WHERE 
+                o.id = '$order_id'";
 $result = mysqli_query($conn, $sql);
 
 if (!$result || mysqli_num_rows($result) == 0) {
@@ -85,8 +99,10 @@ $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 8);
 $row = mysqli_fetch_assoc($result);
-$pdf->Cell(40, 10, utf8_decode($row['name']), 1, 0);
-$pdf->Cell(50, 10, $row['email'], 1, 0);
+$pdf->Cell(40, 10, substr(utf8_decode($row['user_name']),0, 24), 1, 0);
+$pdf->Cell(50, 10, substr($row['email'],0, 30), 1, 0);
+// $pdf->Cell(40, 10, '123456789012345678901234', 1, 0);
+// $pdf->Cell(50, 10, '123456789012345678901234567890', 1, 0);
 $pdf->Cell(15, 10, utf8_decode($row['genero']), 1, 0, 'C');
 $pdf->Cell(10, 10, $row['xs'], 1, 0, 'C');
 $pdf->Cell(10, 10, $row['s'], 1, 0, 'C');
@@ -95,21 +111,31 @@ $pdf->Cell(10, 10, $row['l'], 1, 0, 'C');
 $pdf->Cell(10, 10, $row['xl'], 1, 0, 'C');
 $pdf->Cell(30, 10, $row['order_date'], 1, 0);
 $pdf->Ln();
+$pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(13);
-$pdf->Cell(160, 10, 'Numero de pedido: ' . $order_id, 1, 0, 'C');
+$pdf->Cell(160, 10, 'Id pedido: ' . $order_id. '    -    Estado: ' . $row['estado'], 1, 0, 'C');
+$pdf->Ln();
+$pdf->Ln();
+$pdf->Ln();
+$pdf->SetFont('Arial', '', 10);
+$pdf->Cell(186, 10, utf8_decode("Nombre del diseño: ") . $row['design_name'], 0, 0, 'C');
+$pdf->Image('..\images\Logo.png',12,18,30);
+
+$pdf->Image('../'.$row['design_preview'],9,108,190);
 
 
 // Código para generar el PDF...
 $pdf_filename = 'reporte_pedido_' . $_POST['order_id'] . '.pdf';
-$pdf->Output('D', $pdf_filename);
+$pdf->Output('I', $pdf_filename);
+// $pdf->Output('D', $pdf_filename);
 
-// Leer el contenido del PDF generado
-$pdf_content = file_get_contents($pdf_filename);
+// // Leer el contenido del PDF generado
+// $pdf_content = file_get_contents($pdf_filename);
 
-// Encabezados para indicar que el contenido es un PDF
-header("Content-type: application/pdf");
-header("Content-Disposition: inline; filename='$pdf_filename'");
-header('Content-Length: ' . strlen($pdf_content));
+// // Encabezados para indicar que el contenido es un PDF
+// header("Content-type: application/pdf");
+// header("Content-Disposition: inline; filename='$pdf_filename'");
+// header('Content-Length: ' . strlen($pdf_content));
 
 // Devolver el contenido del PDF como respuesta
 echo $pdf_content;

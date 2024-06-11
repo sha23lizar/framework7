@@ -1,5 +1,3 @@
-
-
 <?php
 
 $msg = "";
@@ -163,8 +161,7 @@ window.addEventListener("popstate", function(event) {
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords"
-        content="Login Form" />
+    <meta name="keywords" content="Login Form" />
     <!-- //Meta tag Keywords -->
 
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -179,50 +176,52 @@ window.addEventListener("popstate", function(event) {
 
 </head>
 <style>
-   /* Modal CSS */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); /* Transparencia para oscurecer la página */
-}
+    /* Modal CSS */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Transparencia para oscurecer la página */
+    }
 
-.modal-content {
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border: 1px solid #888;
-    text-align: center;
-}
+    .modal-content {
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border: 1px solid #888;
+        text-align: center;
+    }
 
-/* Estilos adicionales para botones */
-#confirmBtn, #cancelBtn {
-    margin: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+    /* Estilos adicionales para botones */
+    #confirmBtn,
+    #cancelBtn {
+        margin: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
 
-#confirmBtn {
-    background-color: #4CAF50; /* Color verde */
-    color: white;
-    border: none;
-}
+    #confirmBtn {
+        background-color: #4CAF50;
+        /* Color verde */
+        color: white;
+        border: none;
+    }
 
-#cancelBtn {
-    background-color: #f44336; /* Color rojo */
-    color: white;
-    border: none;
-}
-
-
+    #cancelBtn {
+        background-color: #f44336;
+        /* Color rojo */
+        color: white;
+        border: none;
+    }
 </style>
 
 <body>
@@ -235,20 +234,23 @@ window.addEventListener("popstate", function(event) {
                 <div class="main-mockup">
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
+                            <a href="../index.php">
+                                <img src="./images/logo.png" style="width: 150px; position: absolute; top: 60px; left: 40px;" alt="">
+                            </a>
                             <img src="images/image3.svg" alt="">
                             <?php echo $msg; ?>
                         </div>
                     </div>
                     <div class="content-wthree">
                         <h2>Cambiar la contraseña</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <p>Ingresa la nueva contraseña. </p>
                         <form action="" method="post">
                             <input type="password" class="password" name="password" placeholder="Ingrese su contraseña" required>
                             <input type="password" class="confirm-password" name="confirm-password" placeholder="Ingrese su contraseña de confirmación" required>
                             <button name="submit" class="btn" type="submit">Cambiar la contraseña</button>
                         </form>
                         <div class="social-icons">
-                            <p>conservar la misma contraseña <a  onclick="return confirm('¿Esta seguro de no cambiar la contraseña?, porque eliminares el token que genramos para restablecer la contraseña.');" href="modificar-cuenta.php?reset=<?php echo $_GET['reset']; ?>&no-change=true">Volver</a>.</p>
+                            <p><a onclick="return confirm('¿Esta seguro de no cambiar la contraseña?, porque eliminares el token que genramos para restablecer la contraseña.');" href="modificar-cuenta.php?reset=<?php echo $_GET['reset']; ?>&no-change=true">conservar la misma contraseña</a>.</p>
                         </div>
                         <!-- Modal HTML -->
                         <br><br><br><br><br><br>
@@ -257,25 +259,27 @@ window.addEventListener("popstate", function(event) {
             </div>
         </div>
 
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <p>¿Estás seguro de que deseas salir? Esto eliminará tu token.</p>
-        <br>
-        <button id="confirmBtn"><a style="color:white;" href="modificar-cuenta.php?reset=<?php echo $_GET['reset']; ?>">aceptar</a></button>
-        <button id="cancelBtn">Cancelar</button>
-    </div>
-</div>
-</section>
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <p>¿Estás seguro de que deseas salir? Esto eliminará tu token.</p>
+                <br>
+                <button id="confirmBtn"><a style="color:white;" href="modificar-cuenta.php?reset=<?php echo $_GET['reset']; ?>">aceptar</a></button>
+                <button id="cancelBtn">Cancelar</button>
+            </div>
+        </div>
+    </section>
     <!-- //form section start -->
     <script src="js/jquery.min.js"></script>
     <script>
-        $(document).ready(function (c) {
-            $('.alert-close').on('click', function (c) {
-                $('.main-mockup').fadeOut('slow', function (c) {
+        $(document).ready(function(c) {
+            history.replaceState(null, null, location.pathname);
+            $('.alert-close').on('click', function(c) {
+                $('.main-mockup').fadeOut('slow', function(c) {
                     $('.main-mockup').remove();
                 });
             });
         });
     </script>
 </body>
+
 </html>

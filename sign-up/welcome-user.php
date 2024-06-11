@@ -214,6 +214,7 @@ header("Expires: 0");
             <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
               <thead>
                 <tr>
+                  <th>id</th>
                   <th>Preview</th>
                   <th>Nombre del Diseño</th>
                   <th>Genero</th>
@@ -223,6 +224,7 @@ header("Expires: 0");
                   <th>L</th>
                   <th>XL</th>
                   <th>Estado</th>
+                  <th class="text-center">PDF</th>
                   <th class="text-center">Acciones</th>
                 </tr>
 
@@ -231,13 +233,36 @@ header("Expires: 0");
 
                 <?php
                 //borrar pedido
-                if (isset($_POST['eliminar']) && isset($_POST['id'])) {
+                if (isset($_POST['cancelar']) && isset($_POST['id'])) {
                   $order_id = $_POST['id'];
                   $user_email = $_SESSION['SESSION_EMAIL'];
 
                   // Prepare the SQL statement to prevent SQL injection
-                  $stmt = $conn->prepare("DELETE FROM orders WHERE id = ? AND email = ?");
-                  $stmt->bind_param("is", $order_id, $user_email);
+                  $stmt = $conn->prepare("UPDATE orders SET estado = 'cancelado' WHERE id = '$order_id'");
+                  
+                  // $stmt->bind_param("is", $order_id);
+
+                  if ($stmt->execute());
+                }
+                if (isset($_POST['solicitar']) && isset($_POST['id'])) {
+                  $order_id = $_POST['id'];
+                  $user_email = $_SESSION['SESSION_EMAIL'];
+
+                  // Prepare the SQL statement to prevent SQL injection
+                  $stmt = $conn->prepare("UPDATE orders SET estado = 'pendiente' WHERE id = '$order_id'");
+                  
+                  // $stmt->bind_param("is", $order_id);
+
+                  if ($stmt->execute());
+                }
+                if (isset($_POST['recibido']) && isset($_POST['id'])) {
+                  $order_id = $_POST['id'];
+                  $user_email = $_SESSION['SESSION_EMAIL'];
+
+                  // Prepare the SQL statement to prevent SQL injection
+                  $stmt = $conn->prepare("UPDATE orders SET estado = 'finalizado' WHERE id = '$order_id'");
+                  
+                  // $stmt->bind_param("is", $order_id);
 
                   if ($stmt->execute());
                 }
@@ -263,7 +288,8 @@ header("Expires: 0");
                 o.*,
                 u.name AS user_name,
                 d.nombre AS design_name,
-                d.preview AS design_preview
+                d.preview AS design_preview,
+                u.email
             FROM 
                 orders o
             INNER JOIN 
@@ -271,7 +297,7 @@ header("Expires: 0");
             INNER JOIN 
                 diseños d ON o.id_disign = d.id
             WHERE 
-                o.id_user = '$id'";
+                o.id_user = '$id' ORDER BY o.id DESC";
                 $result = mysqli_query($conn, $sql);
 
                 if (!$result) {
@@ -283,6 +309,7 @@ header("Expires: 0");
 
                 ?>
                   <tr>
+                    <td class=""><?php echo $mostrar['id']; ?></td>
                     <td class=""><img class="img-tabla-pedidos" src="<?php echo $mostrar['design_preview']; ?>" alt="" srcset=""></td>
                     <!-- <td class=""><?php echo $mostrar['design_preview']; ?></td> -->
                     <td class=""><?php echo $mostrar['design_name']; ?></td>
@@ -297,15 +324,39 @@ header("Expires: 0");
                       <div class="row">
                         <form class="form col-sm" action="FPDF/generador_de_pdf.php" method="post" target="_blank">
                           <input type="hidden" name="order_id" value="<?php echo $mostrar['id']; ?>">
+                          <input type="hidden" name="email" value="<?php echo $mostrar['email']; ?>">
                           <button class="btn btn-danger" type="submit" style=" border: transparent;" name="PDF" data-toggle="tooltip" data-placement="left" title="PDF" onclick="openPDFInNewTab('<?php echo $mostrar['id']; ?>')">PDF
-                          </button>
-                        </form>
-
+                            </button>
+                            </form>
+                </td>
+                          <td class="text-center">
+                        <?php
+                        if ($mostrar['estado'] == 'pendiente') {
+                          ?>
                         <form class="form col-sm" action="" method="post">
                           <input type="hidden" name="id" value="<?php echo $mostrar['id']; ?>">
-                          <button class="btn btn-danger" style="background-color:orange; border: transparent;" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar usuario" onclick="return confirm('¿Esta seguro que quiere cancelar este pedido?');">Cancelar
+                          <button class="btn btn-danger" style="background-color:orange; border: transparent;" type="submit" name="cancelar" data-toggle="tooltip" data-placement="left" title="Eliminar pedido" onclick="return confirm('¿Esta seguro que quiere cancelar este pedido?');">Cancelar
                           </button>
                         </form>
+                          <?php
+                        }else if ($mostrar['estado'] == 'cancelado') {
+                          ?>
+                        <form class="form col-sm" action="" method="post">
+                          <input type="hidden" name="id" value="<?php echo $mostrar['id']; ?>">
+                          <button class="btn btn-success" type="submit" name="solicitar" data-toggle="tooltip" data-placement="left" title="Eliminar pedido" onclick="return confirm('¿Esta seguro que quiere cancelar este pedido?');">Solicitar
+                          </button>
+                        </form>
+                          <?php
+                        } else if ($mostrar['estado'] == 'Aprobado') {
+                          ?>
+                        <form class="form col-sm" action="" method="post">
+                          <input type="hidden" name="id" value="<?php echo $mostrar['id']; ?>">
+                          <button class="btn btn-success" type="submit" name="recibido" data-toggle="tooltip" data-placement="left" title="Eliminar pedido" onclick="return confirm('¿Esta seguro que quiere cancelar este pedido?');">Recibido
+                          </button>
+                        </form>
+                          <?php
+                        }
+                        ?>
                       </div>
                     </td>
                   </tr>

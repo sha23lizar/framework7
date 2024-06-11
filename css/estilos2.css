@@ -1271,6 +1271,7 @@ main.editor {
 }
 
 .btns-content-user-img {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1328,7 +1329,7 @@ main.editor {
 
 
 .opciones-agregar input,
-.opciones-agregar button {
+.opciones-agregar .btn-agregar-imagen {
     border: none;
     width: 125px;
     height: 152px;
@@ -1344,8 +1345,20 @@ main.editor {
 
 }
 
+.btns-content-user-img > .btn-delete-img {
+    padding: 0px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 5px;
+    top: 5px;
+}
 
-.opciones-agregar button svg {
+
+.opciones-agregar .btn-agregar-imagen svg {
     fill: var(--color-secundario);
     width: 50%;
     height: auto;

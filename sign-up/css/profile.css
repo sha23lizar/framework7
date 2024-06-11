@@ -688,4 +688,9 @@ hr {
     }
   }
 
+
+  td:contains("cancelado") {
+    color: red;
+  } 
+
   

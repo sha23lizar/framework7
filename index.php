@@ -342,11 +342,11 @@ Bolivar, Estado Bolivar, Venezuela</p>
 
     <footer>
         <li>©2023 ShalomCreativeDesign.Todos los derechos</li>
-        <li><a href="#">Privacidad</a></li>
+        <!-- <li><a href="#">Privacidad</a></li>
         <li><a href="#">Términos de venta</a></li>
         <li><a href="#">Términos de uso del sitio web</a></li>
         <li><a href="#">Adhesiones y vinculación con las redes sociales</a></li>
-        <li><a href="#">Preferencias de cookies</a></li>
+        <li><a href="#">Preferencias de cookies</a></li> -->
     </footer>
 
    

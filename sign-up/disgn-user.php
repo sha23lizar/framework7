@@ -272,10 +272,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     justify-content: center;
     width: 100%;
   }
-  #orderForm{
+
+  #orderForm {
     justify-items: center;
 
   }
+
   .button-pev {
     padding: 10px;
     background-color: rgb(60, 251, 57);
@@ -487,12 +489,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="file" id="image_path" name="image_path" style="border-bottom: transparent; border-top: transparent; width: 400px;" accept="image/*" required>
                     
                   </div> -->
-                  
-                  <div id="error-message" class="error hidden">Por favor, seleccione el género y al menos una cantidad de camisetas.</div>
-                  <button type="submit" class="button-pev">Realizar pedido</button>
-                  <input type="text" class="input_id_user" name="id_user" value="<?php echo $id; ?>" hidden>
-                  <input type="text" id="input_id_disign"  name="id_disign" value="<?php echo isset($_GET['id']) ? $_GET['id'] : 'none';?>" hidden>
-                </form>
+
+                <div id="error-message" class="error hidden">Por favor, seleccione el género y al menos una cantidad de camisetas.</div>
+                <button type="submit" class="button-pev">Realizar pedido</button>
+                <input type="text" class="input_id_user" name="id_user" value="<?php echo $id; ?>" hidden>
+                <input type="text" id="input_id_disign" name="id_disign" value="<?php echo isset($_GET['id']) ? $_GET['id'] : 'none'; ?>" hidden>
+              </form>
             </div>
 
 
@@ -521,11 +523,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </h4>
                   </button>
                   <div class="btns-content-user-img" id="10" data-url="../users/7/img/1038698563.jpg" data-name="TU NOMBRE (1920 x 522 px).png">
-                      <div>
-                        <img src="..\assets\img\name.jpg" alt="">
-                      </div>
-                      <p class="title">TU NOMBRE</p>
+                    <div>
+                      <img src="..\assets\img\name.jpg" alt="">
                     </div>
+                    <p class="title">TU NOMBRE</p>
+                  </div>
                   <?php
                   require("../includes/Conexion.php");
                   // $id_user = 7;
@@ -536,6 +538,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   while ($resultado = $sql->fetch_assoc()) {
                   ?>
                     <div class="btns-content-user-img" id="<?php echo $resultado['id_img'] ?>" data-url="<?php echo $resultado['urlImg'] ?>" data-name="<?php echo $resultado['nameImg'] ?>">
+                      <!-- <button type="button" class="btn btn-outline-danger btn-delete-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                        </svg>
+                      </button> -->
                       <div>
                         <img src="<?php echo $resultado['urlImg'] ?>" alt="">
                       </div>

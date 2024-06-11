@@ -153,14 +153,17 @@ if (isset($_POST['submit_step2'])) {
                 <div class="main-mockup">
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
+                        <a href="../index.php">
+                                <img src="./images/logo.png" style="width: 150px; position: absolute; top: 60px; left: 40px;" alt="">
+                            </a>
                             <img src="images/image3.svg" alt="">
                             <?php echo $msg; ?>
                       
                         </div>
                     </div>
                     <div class="content-wthree">
-                        <h2>Olvidaste tu contraseña?</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <h2>¿Olvidaste tu contraseña?</h2>
+                        <p>Ingresa tus datos para recuperarla. </p>
                     <form action="" method="post">
                         <?php if (empty($pregunta_seguridad)) { ?>
                             <!-- Paso 1: Ingresar correo electrónico y nombre -->
@@ -177,7 +180,7 @@ if (isset($_POST['submit_step2'])) {
                     </form>
                         
                         <div class="social-icons">
-                            <p>Regresar a <a href="index.php">Login</a>.</p>
+                            <p>Regresar al <a href="index.php">inicio de sesion</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -190,6 +193,7 @@ if (isset($_POST['submit_step2'])) {
     <script src="js/jquery.min.js"></script>
     <script>
         $(document).ready(function (c) {
+            history.replaceState(null, null, location.pathname);
             $('.alert-close').on('click', function (c) {
                 $('.main-mockup').fadeOut('slow', function (c) {
                     $('.main-mockup').remove();

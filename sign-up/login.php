@@ -154,12 +154,16 @@ if (isset($_POST['submit'])) {
                     
                     <div class="w3l_form align-self">
                         <div class="left_grid_info" >
+                        <a href="../index.php">
+                                <img src="./images/logo.png" style="width: 150px; position: absolute; top: 60px; left: 40px;" alt="">
+                            </a>
                             <img src="./images/login.png" alt="">
                             <?php echo $msg; ?>
                         </div>
                     </div>
                     <div class="content-wthree">
                         <h2>Registrarse</h2>
+                        <p>Ingresa tus datos para crear una cuenta.</p>
                         <form action="" method="POST">
                         
                             <input type="text" class="name" name="name" placeholder="Ingresa tu nombre" value="<?php if (isset($_POST['submit'])) { echo $name; } ?>" required>
@@ -176,7 +180,7 @@ if (isset($_POST['submit'])) {
                         </form>
 
                         <div class="social-icons">    
-                            <p> <a href="index.php">Volver a login</a></p>
+                            <p> <a href="index.php">Volver al inicio de sesion</a></p>
                         </div>
                     </div>
                 </div>
